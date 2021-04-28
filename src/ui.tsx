@@ -28,7 +28,7 @@ function Window() {
   const [selectedBoardIndex, setSelectedBoardIndex] = useState(0)
   const [cursorX, setCursorX] = useState(0)
   const [cursorY, setCursorY] = useState(0)
-  const [serverStatus] = useServer()
+  const [serverStatus] = useServer(boards)
 
   useInput((input, key) => {
     if (key.leftArrow) {

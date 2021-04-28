@@ -1,23 +1,27 @@
 import { useEffect, useRef, useState } from "react"
 import express, { json } from "express"
 import expressWs from "express-ws"
-import http from "http"
+import { Board } from "./types"
+import {
+  makeOebspConnection,
+  OebspConnectionInterface,
+} from "./oebspConnection"
 
-export function useServer() {
-  const serverRef = useRef<http.Server>()
+export function useServer(boards: Board[]) {
+  const ifaceRef = useRef<OebspConnectionInterface>()
   const [serverStatus, setServerStatus] = useState("Starting...")
 
-  const serverPort = 1982
+  const serverPort = Number(process.env.PORT || 1982)
 
   useEffect(() => {
     const baseApp = express()
     baseApp.use(json())
 
-    const server = http.createServer(baseApp)
-
-    const wsInstance = expressWs(baseApp, server)
+    const wsInstance = expressWs(baseApp)
     wsInstance.getWss().on("error", (e) => {
+      //  if (e.message.indexOf("EADDRINUSE") < 0) {
       setServerStatus(`Error: [${e.name}] ${e.message}`)
+      //s     }
     })
 
     const { app } = wsInstance
@@ -27,14 +31,22 @@ export function useServer() {
       res.send("OK")
     })
 
+    const iface = makeOebspConnection(boards)
+
+    app.ws("/oebsp", iface.handler)
+
     new Promise<void>((resolve) => {
-      server.listen(serverPort, () => resolve())
+      app.listen(serverPort, () => resolve())
     }).then(() => {
       setServerStatus(`Listening on ws://localhost:${serverPort}/`)
     })
 
-    serverRef.current = server
-  })
+    ifaceRef.current = iface
+  }, [])
+
+  useEffect(() => {
+    ifaceRef.current?.updateBoards(boards)
+  }, [ifaceRef.current, boards])
 
   return [serverStatus]
 }
