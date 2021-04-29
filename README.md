@@ -1,10 +1,10 @@
 # OEBSP Reference Server
 
 This application provides a reference server for the Open E-board Server Protocol (OEBSP),
-intended to assist the developers of Chess client softare to test their OEBSP integration.
+intended to assist the developers of Chess client software to test their OEBSP integration.
 
 Running the application will create a OEBSP server on your local machine, and give you access
-to an interface where you can manipulated a simulated e-Board.
+to an interface from which you can manipulate a simulated e-Board.
 
 ## Usage
 
