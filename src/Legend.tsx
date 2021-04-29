@@ -10,6 +10,7 @@ export function Legend() {
       <LegendKey code="p/n/b/r/q/k" label="Set piece" />
       <LegendKey code="SPACE" label="Clear piece" />
       <LegendKey code="^R" label="Reset board" />
+      <LegendKey code="^F" label="Flip board" />
     </Text>
   )
 }

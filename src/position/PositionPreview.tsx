@@ -7,10 +7,12 @@ export function PositionPreview({
   position,
   cursorX = -1,
   cursorY = -1,
+  flipped = false,
 }: {
   position: Position
   cursorX?: number
   cursorY?: number
+  flipped?: boolean
 }) {
   const extents = range(0, 8)
 
@@ -22,14 +24,14 @@ export function PositionPreview({
           <Text>
             │
             {extents.map((x) => {
-              const column = position[x]
-              const piece = (column && column[y]) || null
+              const column = position[flipped ? 7 - x : x]
+              const piece = (column && column[flipped ? 7 - y : y]) || null
               const isCursorOnSquare = cursorX === x && cursorY === y
 
               return (
                 <Fragment key={x}>
-                  <Text backgroundColor={isCursorOnSquare ? 'blue' : undefined}>
-                    {` ${piece || ' '} `}
+                  <Text backgroundColor={isCursorOnSquare ? "blue" : undefined}>
+                    {` ${piece || " "} `}
                   </Text>
                   │
                 </Fragment>

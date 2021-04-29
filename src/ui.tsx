@@ -26,6 +26,7 @@ const pieceKeys = "pbnrqkPBNRQK"
 function Window() {
   const [boards, setBoards] = useState<Board[]>([makeBoard()])
   const [selectedBoardIndex, setSelectedBoardIndex] = useState(0)
+  const [isFlipped, setIsFlipped] = useState(false)
   const [cursorX, setCursorX] = useState(0)
   const [cursorY, setCursorY] = useState(0)
   const [serverStatus] = useServer(boards)
@@ -49,6 +50,8 @@ function Window() {
           },
         })
       )
+    } else if (key.ctrl && input.toLowerCase() === "f") {
+      setIsFlipped(!isFlipped)
     } else if (pieceKeys.indexOf(input) >= 0) {
       setCurrentSquare(input)
     } else if (input === " ") {
@@ -61,8 +64,8 @@ function Window() {
       update(boards, {
         [selectedBoardIndex]: {
           position: {
-            [cursorX]: {
-              [cursorY]: {
+            [isFlipped ? 7 - cursorX : cursorX]: {
+              [isFlipped ? 7 - cursorY : cursorY]: {
                 $set: value,
               },
             },
@@ -93,6 +96,7 @@ function Window() {
                 position={selectedBoard.position}
                 cursorX={cursorX}
                 cursorY={cursorY}
+                flipped={isFlipped}
               />
             </Box>
           </Box>
