@@ -1,6 +1,6 @@
 # OEBSP Reference Server
 
-This application provides a reference server for the Open E-board Server Protocol (OEBSP),
+This application provides a reference server for the [Open E-board Server Protocol (OEBSP)](https://home.tornelo.com/e-board-integration/),
 intended to assist the developers of Chess client software to test their OEBSP integration.
 
 Running the application will create a OEBSP server on your local machine, and give you access
