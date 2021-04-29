@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/main.ts",
+  "bin": "dist/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node ./src/main.ts"
+    "start": "ts-node ./src/main.ts",
+    "build": "npm run build:ts && npm run build:pkg",
+    "build:ts": "tsc",
+    "build:pkg": "pkg ."
   },
   "author": "Tobias Cohen <tobi@tobico.net>",
   "license": "ISC",
@@ -28,5 +32,13 @@
   },
   "prettier": {
     "semi": false
+  },
+  "devDependencies": {
+    "pkg": "^5.1.0"
+  },
+  "pkg": {
+    "outputPath": "build",
+    "scripts": "dist/**/*.js",
+    "targets": ["node14-linux-x64", "node14-macos-x64", "node14-win-x64"]
   }
 }
