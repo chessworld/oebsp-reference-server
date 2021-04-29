@@ -9,7 +9,7 @@ to an interface where you can manipulated a simulated e-Board.
 ## Usage
 
 1. Download the latest releast [from the GitHub releases page](https://github.com/chessworld/oebsp-reference-server/releases/).
-2. Run the application. By default it will listen on port 1982, this can be changed by specifying the `PORT` environment variabl
+2. Run the application. By default it will listen on port 1982, this can be changed by specifying the `PORT` environment variable.
 
 ![Screenshot](./doc/screenshot.png)
 
