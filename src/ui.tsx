@@ -9,6 +9,7 @@ import { BoardList } from "./BoardList"
 import { PositionPreview } from "./position/PositionPreview"
 import { Legend } from "./Legend"
 import update from "immutability-helper"
+import { BoardOptions } from "./BoardOptions"
 
 const startingPosition = positionFromFEN(
   "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
@@ -18,6 +19,12 @@ function makeBoard(): Board {
   return {
     id: last(v4().split("-")) || "",
     position: startingPosition,
+    features: {
+      lightCorners: false,
+      lightSquares: false,
+    },
+    corners: new Array(81).fill(false),
+    squares: new Array(64).fill(false),
   }
 }
 
@@ -29,7 +36,7 @@ function Window() {
   const [isFlipped, setIsFlipped] = useState(false)
   const [cursorX, setCursorX] = useState(0)
   const [cursorY, setCursorY] = useState(0)
-  const [serverStatus] = useServer(boards)
+  const [serverStatus] = useServer(boards, setBoards)
 
   useInput((input, key) => {
     if (key.leftArrow) {
@@ -56,6 +63,30 @@ function Window() {
       setCurrentSquare(input)
     } else if (input === " ") {
       setCurrentSquare(null)
+    } else if (input === "1") {
+      setBoards(
+        update(boards, {
+          [selectedBoardIndex]: {
+            features: {
+              lightCorners: {
+                $apply: (x) => !x,
+              },
+            },
+          },
+        })
+      )
+    } else if (input === "2") {
+      setBoards(
+        update(boards, {
+          [selectedBoardIndex]: {
+            features: {
+              lightSquares: {
+                $apply: (x) => !x,
+              },
+            },
+          },
+        })
+      )
     }
   })
 
@@ -81,7 +112,21 @@ function Window() {
     <Box flexDirection="column" alignItems="stretch" width="100%">
       <Text>Server status: {serverStatus}</Text>
       <Box flexDirection="row">
-        <BoardList boards={boards} selectedBoardIndex={selectedBoardIndex} />
+        <Box flexDirection="column">
+          <BoardList boards={boards} selectedBoardIndex={selectedBoardIndex} />
+          {selectedBoard && (
+            <Box
+              flexDirection="column"
+              alignItems="center"
+              borderStyle="round"
+              borderColor="gray"
+              padding={1}
+            >
+              <Text underline>Board features</Text>
+              <BoardOptions board={selectedBoard} />
+            </Box>
+          )}
+        </Box>
         {selectedBoard && (
           <Box
             borderStyle="round"
@@ -97,6 +142,16 @@ function Window() {
                 cursorX={cursorX}
                 cursorY={cursorY}
                 flipped={isFlipped}
+                corners={
+                  selectedBoard.features.lightCorners
+                    ? selectedBoard.corners
+                    : undefined
+                }
+                squares={
+                  selectedBoard.features.lightSquares
+                    ? selectedBoard.squares
+                    : undefined
+                }
               />
             </Box>
           </Box>

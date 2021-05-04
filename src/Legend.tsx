@@ -9,6 +9,7 @@ export function Legend() {
       <LegendKey code="Arrows" label="Select square" />
       <LegendKey code="p/n/b/r/q/k" label="Set piece" />
       <LegendKey code="SPACE" label="Clear piece" />
+      <LegendKey code="TAB" label="Toggle options" />
       <LegendKey code="^R" label="Reset board" />
       <LegendKey code="^F" label="Flip board" />
     </Text>

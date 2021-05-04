@@ -7,7 +7,10 @@ import {
   OebspConnectionInterface,
 } from "./oebspConnection"
 
-export function useServer(boards: Board[]) {
+export function useServer(
+  boards: Board[],
+  setBoards: (boards: Board[]) => void
+) {
   const ifaceRef = useRef<OebspConnectionInterface>()
   const [serverStatus, setServerStatus] = useState("Starting...")
 
@@ -31,7 +34,7 @@ export function useServer(boards: Board[]) {
       res.send("OK")
     })
 
-    const iface = makeOebspConnection(boards)
+    const iface = makeOebspConnection(boards, setBoards)
 
     app.ws("/oebsp", iface.handler)
 

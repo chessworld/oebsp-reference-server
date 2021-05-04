@@ -1,3 +1,4 @@
+import update, { Spec } from "immutability-helper"
 import { zip } from "lodash"
 import { connectionHandler } from "./connectionHandler"
 import { positionToFEN } from "./position/positionToFEN"
@@ -9,7 +10,8 @@ export interface OebspConnectionInterface {
 }
 
 export function makeOebspConnection(
-  initialBoards: Board[]
+  initialBoards: Board[],
+  setBoards: (boards: Board[]) => void
 ): OebspConnectionInterface {
   let boards = initialBoards
   const listeners = new Set<(oldBoards: Board[], newBoards: Board[]) => void>()
@@ -18,7 +20,11 @@ export function makeOebspConnection(
     handler: connectionHandler<any, any>(({ socket, send, req }) => {
       const listener = async (oldBoards: Board[], newBoards: Board[]) => {
         for (const [oldBoard, newBoard] of zip(oldBoards, newBoards)) {
-          if (oldBoard !== newBoard && newBoard) {
+          if (
+            newBoard &&
+            subscribedBoards.has(newBoard.id) &&
+            oldBoard?.position !== newBoard?.position
+          ) {
             await send({
               type: "boardUpdate",
               serialNumber: newBoard.id,
@@ -49,6 +55,7 @@ export function makeOebspConnection(
                 boards: boards.map((board) => ({
                   serialNumber: board.id,
                   fen: positionToFEN(board.position),
+                  features: board.features,
                 })),
               })
               break
@@ -63,6 +70,52 @@ export function makeOebspConnection(
               for (const id of message.serialNumbers) {
                 subscribedBoards.delete(id)
               }
+              break
+            }
+            case "lightCorners": {
+              const boardIndex = boards.findIndex(
+                (board) => board.id === message.serialNumber
+              )
+              if (boardIndex < 0) break
+
+              const spec: Spec<Board> = {
+                corners: {},
+              }
+
+              for (const item of message.corners) {
+                const index = item.x + item.y * 9
+                spec.corners![index] = { $set: !!item.lit }
+              }
+
+              setBoards(
+                update(boards, {
+                  [boardIndex]: spec,
+                })
+              )
+
+              break
+            }
+            case "lightSquares": {
+              const boardIndex = boards.findIndex(
+                (board) => board.id === message.serialNumber
+              )
+              if (boardIndex < 0) break
+
+              const spec: Spec<Board> = {
+                squares: {},
+              }
+
+              for (const item of message.squares) {
+                const index = item.x + item.y * 8
+                spec.squares![index] = { $set: !!item.lit }
+              }
+
+              setBoards(
+                update(boards, {
+                  [boardIndex]: spec,
+                })
+              )
+
               break
             }
           }
