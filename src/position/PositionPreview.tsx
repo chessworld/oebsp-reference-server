@@ -20,14 +20,23 @@ export function PositionPreview({
 }) {
   const extents = range(0, 8)
 
+  const readCorner = (x: number, y: number) =>
+    corners[flipped ? 80 - (x + y * 9) : x + y * 9]
+  const readSquare = (x: number, y: number) =>
+    squares[flipped ? 63 - (x + y * 8) : x + y * 8]
+
   return (
     <Box flexDirection="column">
       <Text>
-        <Light on={corners[0]}>┌</Light>───<Light on={corners[1]}>┬</Light>───
-        <Light on={corners[2]}>┬</Light>───<Light on={corners[3]}>┬</Light>───
-        <Light on={corners[4]}>┬</Light>───<Light on={corners[5]}>┬</Light>───
-        <Light on={corners[6]}>┬</Light>───<Light on={corners[7]}>┬</Light>───
-        <Light on={corners[8]}>┐</Light>
+        <Light on={readCorner(0, 0)}>┌</Light>───
+        <Light on={readCorner(1, 0)}>┬</Light>───
+        <Light on={readCorner(2, 0)}>┬</Light>───
+        <Light on={readCorner(3, 0)}>┬</Light>───
+        <Light on={readCorner(4, 0)}>┬</Light>───
+        <Light on={readCorner(5, 0)}>┬</Light>───
+        <Light on={readCorner(6, 0)}>┬</Light>───
+        <Light on={readCorner(7, 0)}>┬</Light>───
+        <Light on={readCorner(8, 0)}>┐</Light>
       </Text>
       {extents.map((y) => (
         <Fragment key={y}>
@@ -42,7 +51,7 @@ export function PositionPreview({
                 <Fragment key={x}>
                   <Text backgroundColor={isCursorOnSquare ? "blue" : undefined}>
                     {" "}
-                    <Light on={squares[y * 8 + x]}>{piece || " "}</Light>{" "}
+                    <Light on={readSquare(x, y)}>{piece || " "}</Light>{" "}
                   </Text>
                   │
                 </Fragment>
@@ -51,25 +60,29 @@ export function PositionPreview({
           </Text>
           {y < 7 && (
             <Text>
-              <Light on={corners[y * 9 + 9]}>├</Light>───
-              <Light on={corners[y * 9 + 10]}>┼</Light>───
-              <Light on={corners[y * 9 + 11]}>┼</Light>───
-              <Light on={corners[y * 9 + 12]}>┼</Light>───
-              <Light on={corners[y * 9 + 13]}>┼</Light>───
-              <Light on={corners[y * 9 + 14]}>┼</Light>───
-              <Light on={corners[y * 9 + 15]}>┼</Light>───
-              <Light on={corners[y * 9 + 16]}>┼</Light>───
-              <Light on={corners[y * 9 + 17]}>┤</Light>
+              <Light on={readCorner(0, y + 1)}>├</Light>───
+              <Light on={readCorner(1, y + 1)}>┼</Light>───
+              <Light on={readCorner(2, y + 1)}>┼</Light>───
+              <Light on={readCorner(3, y + 1)}>┼</Light>───
+              <Light on={readCorner(4, y + 1)}>┼</Light>───
+              <Light on={readCorner(5, y + 1)}>┼</Light>───
+              <Light on={readCorner(6, y + 1)}>┼</Light>───
+              <Light on={readCorner(7, y + 1)}>┼</Light>───
+              <Light on={readCorner(8, y + 1)}>┤</Light>
             </Text>
           )}
         </Fragment>
       ))}
       <Text>
-        <Light on={corners[72]}>└</Light>───<Light on={corners[73]}>┴</Light>───
-        <Light on={corners[74]}>┴</Light>───<Light on={corners[75]}>┴</Light>───
-        <Light on={corners[76]}>┴</Light>───<Light on={corners[77]}>┴</Light>───
-        <Light on={corners[78]}>┴</Light>───<Light on={corners[79]}>┴</Light>───
-        <Light on={corners[80]}>┘</Light>
+        <Light on={readCorner(0, 8)}>└</Light>───
+        <Light on={readCorner(1, 8)}>┴</Light>───
+        <Light on={readCorner(2, 8)}>┴</Light>───
+        <Light on={readCorner(3, 8)}>┴</Light>───
+        <Light on={readCorner(4, 8)}>┴</Light>───
+        <Light on={readCorner(5, 8)}>┴</Light>───
+        <Light on={readCorner(6, 8)}>┴</Light>───
+        <Light on={readCorner(7, 8)}>┴</Light>───
+        <Light on={readCorner(8, 8)}>┘</Light>
       </Text>
     </Box>
   )
