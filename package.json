@@ -14,31 +14,39 @@
   "author": "Tobias Cohen <tobi@tobico.net>",
   "license": "ISC",
   "dependencies": {
-    "@types/express": "^4.17.11",
-    "@types/express-ws": "^3.0.0",
-    "@types/lodash": "^4.14.168",
-    "@types/node": "^15.0.1",
-    "@types/react": "^17.0.4",
-    "@types/uuid": "^8.3.0",
-    "chalk": "^4.1.1",
-    "express": "^4.17.1",
-    "express-ws": "^4.0.0",
+    "@types/express": "^4.17.13",
+    "@types/express-ws": "^3.0.1",
+    "@types/lodash": "^4.14.178",
+    "@types/node": "^17.0.8",
+    "@types/react": "^17.0.38",
+    "@types/uuid": "^8.3.4",
+    "chalk": "^5.0.0",
+    "express": "^4.17.2",
+    "express-ws": "^5.0.2",
     "immutability-helper": "^3.1.1",
-    "ink": "^3.0.8",
+    "ink": "^3.2.0",
     "lodash": "^4.17.21",
-    "react": "^16.14.0",
-    "ts-node": "^9.1.1",
-    "uuid": "^8.3.2"
+    "react": "^17.0.2",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4",
+    "uuid": "^8.3.2",
+    "ws": "^8.4.1"
   },
   "prettier": {
     "semi": false
   },
   "devDependencies": {
-    "pkg": "^5.1.0"
+    "pkg": "^5.5.2"
   },
   "pkg": {
     "outputPath": "build",
     "scripts": "dist/**/*.js",
-    "targets": ["node14-linux-x64", "node14-macos-x64", "node14-win-x64"]
-  }
+    "targets": [
+      "node14-linux-x64",
+      "node14-macos-x64",
+      "node14-win-x64"
+    ]
+  },
+  "repository": "git@github.com:chessworld/oebsp-reference-server.git",
+  "packageManager": "yarn@3.1.1"
 }

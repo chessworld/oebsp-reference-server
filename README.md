@@ -34,9 +34,9 @@ are available:
 ## Development
 
 1. Clone the git repo to your local machine
-2. Make sure you have Node v14 installed
-3. Run `npm install` within the repo directory
-4. Run `npm start` to launch the application
+2. Make sure you have Node v14 or later installed
+3. Install yarn if you don't already have it
+4. Run `yarn start` within the repo directory
 
 ### Building
 
