@@ -48,6 +48,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ink", "virtual:1f33eb1cc4da1fb282f21365e76930018e9b4e5fd7cdd96af0e31a2f61bf8ca03271085934875ed0ad4695d2eba6e412f3025d877e0b90666be8820349d5dd2e#npm:3.2.0"],
             ["lodash", "npm:4.17.21"],
             ["pkg", "virtual:1f33eb1cc4da1fb282f21365e76930018e9b4e5fd7cdd96af0e31a2f61bf8ca03271085934875ed0ad4695d2eba6e412f3025d877e0b90666be8820349d5dd2e#npm:5.5.2"],
+            ["prettier", "npm:2.5.1"],
             ["react", "npm:17.0.2"],
             ["ts-node", "virtual:1f33eb1cc4da1fb282f21365e76930018e9b4e5fd7cdd96af0e31a2f61bf8ca03271085934875ed0ad4695d2eba6e412f3025d877e0b90666be8820349d5dd2e#npm:10.4.0"],
             ["typescript", "patch:typescript@npm%3A4.5.4#~builtin<compat/typescript>::version=4.5.4&hash=493e53"],
@@ -1828,6 +1829,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ink", "virtual:1f33eb1cc4da1fb282f21365e76930018e9b4e5fd7cdd96af0e31a2f61bf8ca03271085934875ed0ad4695d2eba6e412f3025d877e0b90666be8820349d5dd2e#npm:3.2.0"],
             ["lodash", "npm:4.17.21"],
             ["pkg", "virtual:1f33eb1cc4da1fb282f21365e76930018e9b4e5fd7cdd96af0e31a2f61bf8ca03271085934875ed0ad4695d2eba6e412f3025d877e0b90666be8820349d5dd2e#npm:5.5.2"],
+            ["prettier", "npm:2.5.1"],
             ["react", "npm:17.0.2"],
             ["ts-node", "virtual:1f33eb1cc4da1fb282f21365e76930018e9b4e5fd7cdd96af0e31a2f61bf8ca03271085934875ed0ad4695d2eba6e412f3025d877e0b90666be8820349d5dd2e#npm:10.4.0"],
             ["typescript", "patch:typescript@npm%3A4.5.4#~builtin<compat/typescript>::version=4.5.4&hash=493e53"],
@@ -2026,6 +2028,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/prelude-ls-npm-1.1.2-a0daac0886-c4867c8748.zip/node_modules/prelude-ls/",
           "packageDependencies": [
             ["prelude-ls", "npm:1.1.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["prettier", [
+        ["npm:2.5.1", {
+          "packageLocation": "./.yarn/cache/prettier-npm-2.5.1-58b195b509-21b9408476.zip/node_modules/prettier/",
+          "packageDependencies": [
+            ["prettier", "npm:2.5.1"]
           ],
           "linkType": "HARD",
         }]
