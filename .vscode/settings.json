@@ -1,0 +1,14 @@
+{
+  "remote.autoForwardPorts": true,
+  "remote.portsAttributes": {
+    "1982": {
+      "onAutoForward": "silent"
+    }
+  },
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  },
+  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
+}
