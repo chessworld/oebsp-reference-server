@@ -3,10 +3,14 @@ import { Board } from "./types"
 import { v4 } from "uuid"
 import { positionFromFEN } from "./position/positionFromFEN"
 
-export function makeBoard(options: Partial<Board>): Board {
+type BoardOptions = Partial<Board> & {
+  fen?: string
+}
+
+export function makeBoard(options: BoardOptions): Board {
   return {
     id: last(v4().split("-")) || "",
-    position: startingPosition,
+    position: positionFromFEN(options.fen || startingFEN),
     features: {
       lightCorners: false,
       lightSquares: false,
@@ -16,6 +20,9 @@ export function makeBoard(options: Partial<Board>): Board {
     ...options,
   }
 }
+
+const startingFEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
+
 export const startingPosition = positionFromFEN(
-  "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
+ startingFEN 
 )
