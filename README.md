@@ -1,6 +1,6 @@
 # OEBSP Reference Server
 
-This application provides a reference server for the [Open E-board Server Protocol (OEBSP)](https://home.tornelo.com/e-board-integration/),
+This application provides a reference server for the [Open E-board Server Protocol (OEBSP)][1],
 intended to assist the developers of Chess client software to test their OEBSP integration.
 
 Running the application will create a OEBSP server on your local machine, and give you access
@@ -8,7 +8,7 @@ to an interface from which you can manipulate a simulated e-Board.
 
 ## Usage
 
-1. Download the latest releast [from the GitHub releases page](https://github.com/chessworld/oebsp-reference-server/releases/).
+1. Download the latest releast [from the GitHub releases page][2].
 2. Run the application. By default it will listen on port 1982, this can be changed by specifying the `PORT` environment variable.
 
 ![Screenshot](./doc/screenshot.png)
@@ -20,7 +20,7 @@ shortcuts.
 ### Using a custom configuration
 
 You can provide a custom configuration JSON file to configure more complex situations such
-as multiple boards or different start positions. See the `config` path for examples of custom
+as multiple boards or different start positions. See the [`config` folder][3] for examples of custom
 configurations.
 
 To use a custom config, provide the path to the config file as the first argument when launching
@@ -50,3 +50,7 @@ are available:
 ### Building
 
 You can run `yarn build` to build new binaries of the application into the `build` directory.
+
+[1]: https://home.tornelo.com/e-board-integration/
+[2]: https://github.com/chessworld/oebsp-reference-server/releases/
+[3]: https://github.com/chessworld/oebsp-reference-server/tree/master/config
