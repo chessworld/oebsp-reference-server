@@ -49,4 +49,4 @@ are available:
 
 ### Building
 
-You can run `npm build` to build new binaries of the application into the `build` directory.
+You can run `yarn build` to build new binaries of the application into the `build` directory.
