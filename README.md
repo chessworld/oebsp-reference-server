@@ -17,6 +17,15 @@ At the top, you will see the status and URL of the server. Below that is a list 
 and a preview of the current board. At the bottom there is a legend of the available keyboard
 shortcuts.
 
+### Using a custom configuration
+
+You can provide a custom configuration JSON file to configure more complex situations such
+as multiple boards or different start positions. See the `config` path for examples of custom
+configurations.
+
+To use a custom config, provide the path to the config file as the first argument when launching
+the server.
+
 ### Keyboard shortcuts
 
 The user interface is manipulated entirely with the keyboard. The following actions
